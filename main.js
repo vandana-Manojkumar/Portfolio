@@ -32,19 +32,27 @@ function sendMessage(event) {
 }
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menu-toggle');
   const navbar = document.querySelector('.navbar');
-  
+
   console.log('JavaScript is loaded'); // Debugging line
 
   menuToggle.addEventListener('click', () => {
-      console.log('Menu toggle clicked'); // Debugging line
-      menuToggle.classList.toggle('active');
-      navbar.classList.toggle('active');
+    console.log('Menu toggle clicked'); // Debugging line
+    menuToggle.classList.toggle('active');
+    navbar.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!menuToggle.contains(event.target) && !navbar.contains(event.target)) {
+      console.log('Clicked outside menu'); // Debugging line
+      menuToggle.classList.remove('active');
+      navbar.classList.remove('active');
+    }
   });
 });
-
 
 
 
@@ -77,7 +85,7 @@ span.onclick = function() {
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.animation = "fadeOut 0.5s"; // Apply fade out animation
+    modal.style.animation = "fadeOut 0.5s"; 
     setTimeout(function() {
       modal.style.display = "none";
       document.body.style.overflow = "auto"; // Enable scrolling
@@ -85,7 +93,7 @@ window.onclick = function(event) {
   }
 }
 
-// Ensure modal is hidden on page load
+
 document.addEventListener("DOMContentLoaded", function() {
   modal.style.display = "none";
 });
