@@ -8,6 +8,148 @@
     <link rel="stylesheet" href="stylesheet.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <style>
+      /* Enhanced Latest Projects Section */
+      .latestmanoj {
+        padding: 80px 0;
+      }
+      
+      .portfolio-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+      }
+      
+      .row {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        height: 350px;
+        transition: transform 0.5s;
+      }
+      
+      .row:hover {
+        transform: translateY(-10px);
+      }
+      
+      .amazonclone {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+      
+      .row:hover .amazonclone {
+        transform: scale(1.1);
+      }
+      
+      .layer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 2rem;
+        opacity: 0;
+        transition: 0.5s;
+      }
+      
+      .row:hover .layer {
+        opacity: 1;
+      }
+      
+      .layer h5 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: white;
+      }
+      
+      .layer p {
+        color: white;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+      
+      .layer a {
+        background: #fff;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        transition: 0.3s;
+      }
+      
+      .layer a:hover {
+        background: var(--main-color, #00eeff);
+        transform: rotate(360deg);
+      }
+      
+      .main-text h2 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      
+      .main-text span {
+        color: var(--main-color, #00eeff);
+        margin-left: 10px;
+      }
+      
+      /* Smooth Navigation Fixes */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Improved Mobile Navigation */
+      @media (max-width: 768px) {
+        .navbar {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: 80%;
+          height: 100vh;
+          background: rgba(0,0,0,0.9);
+          flex-direction: column;
+          justify-content: flex-start;
+          padding-top: 40px;
+          transition: 0.5s ease;
+          z-index: 998;
+        }
+        
+        .navbar.active {
+          left: 0;
+        }
+        
+        .navbar a {
+          display: block;
+          margin: 15px 0;
+          padding: 10px 0;
+          font-size: 1.2rem;
+        }
+        
+        .menu-toggle {
+          display: flex;
+        }
+        
+        .portfolio-content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
 </head>
 <body>
   <header class="header">
@@ -15,9 +157,10 @@
     <nav class="navbar">
         <a href="#home" style="--i:1" class="active">Home</a>
         <a href="#about" style="--i:2">About</a>
-        <a href="#services" style="--i:3">Skills</a>
-        <a href="#skills" style="--i:4">Portfolio</a>
-        <a href="#contact" style="--i:5">Contact</a>
+        <a href="#skills-section" style="--i:3">Skills</a>
+        <a href="#portfolio-section" style="--i:4">Portfolio</a>
+        <a href="#project" style="--i:5">Projects</a>
+        <a href="#contact" style="--i:6">Contact</a>
     </nav>
     
     <!-- Theme Toggle Button -->
@@ -53,8 +196,8 @@
                 <a href="https://www.linkedin.com/in/manoj-vandana-63a7a8279" target="_blank" style="--i:10"><i class='bx bxl-linkedin'></i></a>
             </div>
 
-            <a href="#" class="btn-box btn-modal more">More About Me</a>
-            <button class="bresume" onclick="window.open('Manojkumar(21bcs130).pdf')">Download CV</button>
+            <a href="#" class="btn-box btn-modal" data-modal="homeModal">More About Me</a>
+            <button class="bresume" onclick="window.open('ManojVandana(21bcs130).pdf')">Download CV</button>
         </div>
 
         <div class="manoj-img">
@@ -63,6 +206,15 @@
     </div>
     <span class="home-imgHover"></span>
   </section>
+
+  <!-- Home Modal -->
+  <div id="homeModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Welcome to My Portfolio</h3>
+      <p>I'm passionate about creating intuitive, efficient, and visually appealing web solutions. With a strong foundation in full-stack development and a keen eye for design, I strive to deliver exceptional user experiences. My journey in tech began with competitive programming and has evolved into developing comprehensive web applications that solve real-world problems.</p>
+    </div>
+  </div>
 
   <section class="about" id="about">
     <div class="rishi manoj">
@@ -74,75 +226,111 @@
         <h2>About <span>Me</span></h2>
         <h4>Full Stack Developer!</h4>
         <p> 
-          I am <span class="VM"> Vandana Manoj Kumar</span>, a Computer Science Engineering student at the Indian Institute of Information Technology, Jabalpur. I am skilled in C/C++, HTML, CSS, and JavaScript, and proficient with Git, GitHub, ReactJs, NodeJs, ExpressJs, and Bootstrap. My experience includes working with SQL, MongoDB, and NoSQL databases. My achievements include being a Tata Imagination Challenge 2023 finalist and a Xiaomi Ode2Code 3.0 semi-finalist. I have solved over 450 coding problems on various platforms.
+          I’m <span class="VM"> Manoj Kumar Vandana</span> , a final-year B.Tech Computer Science student at IIIT Jabalpur, graduating in 2025. I have solved 800+ Data Structures and Algorithms problems, specializing in dynamic programming, graph algorithms, and tries. My expertise extends to full-stack web development, building projects from web scraping to e-commerce platforms. Skilled in React, Node.js, Express, and MongoDB, I create scalable and responsive applications. Passionate about solving complex problems and optimizing performance, I constantly explore new technologies.
         </p>
-        <a href="#" class="btn-box btn-modal" id="moreAboutMeBtn" >More About Me</a>
+        <a href="#" class="btn-box btn-modal" data-modal="aboutMeModal">More About Me</a>
       </div>
     </div>
   </section>
 
-  <div id="myModal" class="modal">
-    <!-- Modal content -->
+  <!-- About Me Modal -->
+  <div id="aboutMeModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <p>I have strong soft skills in public speaking, teamwork, creativity, and time management. My projects include a React-based e-commerce site , web-scraping application, and a Wikipedia search application. I am eager to apply my skills in a challenging internship and contribute to innovative projects.
-      </p>
+      <h3>More About Me</h3>
+      <p>I actively participate in coding challenges across LeetCode, Coding Ninjas, and GeeksforGeeks, focusing on medium to hard-level problems. My full-stack development experience includes seamless API integration, authentication, and database management. I’ve worked on payment integration, implementing PayPal for secure transactions. I believe in clean code, efficient algorithms, and user-centric design. Always eager to learn, innovate, and collaborate, I strive to create impactful solutions through technology.</p>
     </div>
   </div>
 
-  <section class="skills">
+  <section class="skills" id="skills-section">
     <div class="services" id="services">
-      <div class=" container">
+      <div class="container">
         <h1 class="sub-title">My <span>Skills</span></h1>
 
         <div class="services-list">
           <div>
             <i class="bx bx-code" style="color: #00eeff"></i>
             <h2>Coding experience</h2>
-            <p> Coding Experience
-              Solved over 450 coding questions across multiple competitive programming platforms. <a href="#" class="read btn-box btn-modal">Learn more</a></p>
+            <p>
+              Expert in algorithms and data structures, solving complex problems efficiently with optimization and precision. 
+              <a href="#" class="read btn-box btn-modal" data-modal="codingModal">Learn more</a>
+            </p>
           </div>
 
           <div>
             <i class="bx bx-crop" style="color: #00eeff"></i>
             <h2>Web Development</h2>
             <p> 
-              Proficient in React.js, HTML, CSS, JavaScript, and Node.js, creating responsive, dynamic web apps.<a href="#" class="read btn-box btn-modal">Learn more</a></p>
+              Full-stack developer skilled in building scalable, responsive, and dynamic web applications from scratch.
+              <a href="#" class="read btn-box btn-modal" data-modal="webDevModal">Learn more</a>
+            </p>
           </div>
 
           <div>
             <i class="bx bxl-apple" style="color: #00eeff"></i>
             <h2>API Integration</h2>
-            <p> Integrating third-party APIs to enhance functionality and user experience dynamic web apps dynamic web apps.<a href="#" class="read btn-box btn-modal">Learn more</a></p>
+            <p> 
+              Seamlessly integrating third-party APIs like PayPal to enhance functionality, security, and user experience.
+              <a href="#" class="read btn-box btn-modal" data-modal="apiModal">Learn more</a>
+            </p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Skill-specific Modals -->
+  <div id="codingModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Coding Experience</h3>
+      <p>Solved over 900 Data Structures and Algorithms problems across LeetCode, Coding Ninjas, and GeeksforGeeks, focusing on medium to hard-level questions. Passionate about dynamic programming, graph algorithms, and tries. Strong problem-solving skills with a deep understanding of optimization techniques.</p>
+    </div>
+  </div>
+
+  <div id="webDevModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Web Development Skills</h3>
+      <p>Built multiple projects ranging from web scraping to full-fledged e-commerce platforms. Skilled in front-end development with React and back-end with Node.js, Express, and MongoDB. Focuses on creating responsive, scalable, and efficient web applications.</p>
+    </div>
+  </div>
+
+  <div id="apiModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>API Integration Expertise</h3>
+      <p>Implemented seamless third-party API integrations for various applications. Integrated PayPal for secure and efficient payment processing in e-commerce platforms. Experienced in handling authentication, data exchange, and payment gateways.</p>
+    </div>
+  </div>
+
   <!-- TECHNICAL SKILLS SECTION -->
-  <section class="skills-section" id="skills">
+  <section class="skills-section" id="portfolio-section">
     <div class="container">
       <h1 class="section-title">Technical <span>Skills</span></h1>
       
-      <div class="skills-container">
+      <!-- Tech Skills Cards -->
+      <div class="skills-grid">
         <!-- Programming Languages -->
         <div class="skill-category">
-          <h3><i class='bx bx-code-alt'></i> Programming Languages</h3>
-          <div class="skill-items">
-            <div class="skill-item">
+          <div class="category-header">
+            <i class='bx bx-code-alt'></i>
+            <h3>Programming Languages</h3>
+          </div>
+          <div class="skills-cloud">
+            <div class="skill-tag advanced">
               <i class='bx bxl-c-plus-plus'></i>
               <span>C/C++</span>
             </div>
-            <div class="skill-item">
+            <div class="skill-tag advanced">
               <i class='bx bxl-javascript'></i>
               <span>JavaScript</span>
             </div>
-            <div class="skill-item">
+            <div class="skill-tag intermediate">
               <i class='bx bx-code'></i>
               <span>Python</span>
             </div>
-            <div class="skill-item">
+            <div class="skill-tag intermediate">
               <i class='bx bx-code-curly'></i>
               <span>Java</span>
             </div>
@@ -151,77 +339,110 @@
         
         <!-- Web Development -->
         <div class="skill-category">
-          <h3><i class='bx bx-globe'></i> Web Development</h3>
-          <div class="skill-items">
-            <div class="skill-item">
+          <div class="category-header">
+            <i class='bx bx-globe'></i>
+            <h3>Web Development</h3>
+          </div>
+          <div class="skills-cloud">
+            <div class="skill-tag expert">
               <i class='bx bxl-html5'></i>
               <span>HTML5</span>
             </div>
-            <div class="skill-item">
+            <div class="skill-tag advanced">
               <i class='bx bxl-css3'></i>
               <span>CSS3</span>
             </div>
-            <div class="skill-item">
+            <div class="skill-tag advanced">
               <i class='bx bxl-react'></i>
               <span>React.js</span>
             </div>
-            <div class="skill-item">
+            <div class="skill-tag intermediate">
               <i class='bx bxl-nodejs'></i>
               <span>Node.js</span>
             </div>
-            <div class="skill-item">
-              <i class='bx bxl-bootstrap'></i>
-              <span>Bootstrap</span>
-            </div>
-            <div class="skill-item">
-              <i class='bx bx-server'></i>
-              <span>Express.js</span>
-            </div>
           </div>
         </div>
-        
-        <!-- Databases -->
-        <div class="skill-category">
-          <h3><i class='bx bx-data'></i> Databases</h3>
-          <div class="skill-items">
-            <div class="skill-item">
-              <i class='bx bx-table'></i>
-              <span>SQL</span>
-            </div>
-            <div class="skill-item">
-              <i class='bx bxl-mongodb'></i>
-              <span>MongoDB</span>
-            </div>
-            <div class="skill-item">
-              <i class='bx bx-data'></i>
-              <span>NoSQL</span>
+      </div>
+      
+      <!-- Tech Stack 3D Cards -->
+      <div class="tech-stack">
+        <h3 class="tech-stack-title">My Tech Stack</h3>
+        <div class="tech-cards">
+          <div class="tech-card">
+            <div class="tech-card-inner">
+              <div class="tech-card-front">
+                <i class='bx bxl-git'></i>
+                <span>GitHub</span>
+              </div>
+              <div class="tech-card-back">
+                <p>Version control expert</p>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <!-- Tools & Technologies -->
-        <div class="skill-category">
-          <h3><i class='bx bx-wrench'></i> Tools & Technologies</h3>
-          <div class="skill-items">
-            <div class="skill-item">
-              <i class='bx bxl-git'></i>
-              <span>Git</span>
+          <div class="tech-card">
+            <div class="tech-card-inner">
+              <div class="tech-card-front">
+                <i class='bx bxl-mongodb'></i>
+                <span>MongoDB</span>
+              </div>
+              <div class="tech-card-back">
+                <p>NoSQL database</p>
+              </div>
             </div>
-            <div class="skill-item">
-              <i class='bx bxl-github'></i>
-              <span>GitHub</span>
+          </div>
+          <div class="tech-card">
+            <div class="tech-card-inner">
+              <div class="tech-card-front">
+                <i class='bx bx-table'></i>
+                <span>SQL</span>
+              </div>
+              <div class="tech-card-back">
+                <p>Relational databases</p>
+              </div>
             </div>
-            <div class="skill-item">
-              <i class='bx bx-terminal'></i>
-              <span>Command Line</span>
+          </div>
+          <div class="tech-card">
+            <div class="tech-card-inner">
+              <div class="tech-card-front">
+                <i class='bx bxl-bootstrap'></i>
+                <span>Bootstrap</span>
+              </div>
+              <div class="tech-card-back">
+                <p>Responsive design</p>
+              </div>
             </div>
-            <div class="skill-item">
-              <i class='bx bx-cloud'></i>
-              <span>RESTful APIs</span>
+          </div>
+          <div class="tech-card">
+            <div class="tech-card-inner">
+              <div class="tech-card-front">
+                <i class='bx bx-server'></i>
+                <span>Express.js</span>
+              </div>
+              <div class="tech-card-back">
+                <p>Backend framework</p>
+              </div>
             </div>
-            <div class="skill-item">
-              <i class='bx bx-devices'></i>
-              <span>Responsive Design</span>
+          </div>
+          <div class="tech-card">
+            <div class="tech-card-inner">
+              <div class="tech-card-front">
+                <i class='bx bx-cloud'></i>
+                <span>REST APIs</span>
+              </div>
+              <div class="tech-card-back">
+                <p>API development</p>
+              </div>
+            </div>
+          </div>
+          <div class="tech-card">
+            <div class="tech-card-inner">
+              <div class="tech-card-front">
+                <i class='bx bx-devices'></i>
+                <span>Responsive</span>
+              </div>
+              <div class="tech-card-back">
+                <p>Cross-device design</p>
+              </div>
             </div>
           </div>
         </div>
@@ -234,97 +455,83 @@
     <div class="container">
       <h1 class="section-title">Professional <span>Skills</span></h1>
       
-      <div class="professional-skills-container">
-        <div class="professional-skill">
-          <div class="skill-icon">
+      <div class="prof-skills-container">
+        <div class="prof-skill-card">
+          <div class="skill-icon-wrapper">
             <i class='bx bx-group'></i>
           </div>
-          <div class="skill-content">
-            <h3>Teamwork & Collaboration</h3>
-            <p>Experienced in collaborative environments, contributing effectively to team goals while fostering positive relationships with colleagues.</p>
+          <h3>Teamwork & Collaboration</h3>
+          <div class="skill-level">
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
           </div>
+          <p>Experienced in collaborative environments, contributing effectively to team goals while fostering positive relationships with colleagues.</p>
         </div>
         
-        <div class="professional-skill">
-          <div class="skill-icon">
+        <div class="prof-skill-card">
+          <div class="skill-icon-wrapper">
             <i class='bx bx-bulb'></i>
           </div>
-          <div class="skill-content">
-            <h3>Problem Solving</h3>
-            <p>Strong analytical skills with the ability to break down complex issues, identify root causes, and develop effective solutions.</p>
+          <h3>Problem Solving</h3>
+          <div class="skill-level">
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
           </div>
+          <p>Strong analytical skills with the ability to break down complex issues, identify root causes, and develop effective solutions.</p>
         </div>
         
-        <div class="professional-skill">
-          <div class="skill-icon">
+        <div class="prof-skill-card">
+          <div class="skill-icon-wrapper">
             <i class='bx bx-comment-detail'></i>
           </div>
-          <div class="skill-content">
-            <h3>Communication</h3>
-            <p>Excellent verbal and written communication skills, able to convey technical concepts to both technical and non-technical audiences.</p>
+          <h3>Communication</h3>
+          <div class="skill-level">
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
+            <span class="skill-dot active"></span>
+            <span class="skill-dot"></span>
           </div>
-        </div>
-        
-        <div class="professional-skill">
-          <div class="skill-icon">
-            <i class='bx bx-time-five'></i>
-          </div>
-          <div class="skill-content">
-            <h3>Time Management</h3>
-            <p>Proficient in managing multiple tasks and deadlines effectively, ensuring timely delivery of quality results.</p>
-          </div>
-        </div>
-        
-        <div class="professional-skill">
-          <div class="skill-icon">
-            <i class='bx bx-palette'></i>
-          </div>
-          <div class="skill-content">
-            <h3>Creativity</h3>
-            <p>Creative thinker who brings innovative solutions to projects and challenges, with a focus on user experience and design.</p>
-          </div>
-        </div>
-        
-        <div class="professional-skill">
-          <div class="skill-icon">
-            <i class='bx bx-trending-up'></i>
-          </div>
-          <div class="skill-content">
-            <h3>Adaptability</h3>
-            <p>Quick to learn new technologies and methodologies, adapting seamlessly to changing project requirements and environments.</p>
-          </div>
+          <p>Excellent verbal and written communication skills, able to convey technical concepts to both technical and non-technical audiences.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="latestmanoj">
-    <div id="portfolio" id="project">
-      <div class="main-text" id="project">
-        <h2>Latest<span>Project</span></h2>
+  <!-- ENHANCED LATEST PROJECTS SECTION -->
+  <section class="latestmanoj" id="project">
+    <div id="portfolio">
+      <div class="main-text">
+        <h2>Latest<span>Projects</span></h2>
         <div class="portfolio-content">
           <div class="row">
-            <img class="amazonclone" src="amazon.jpg" alt="Project Image 1">
+            <img class="amazonclone" src="amazon.jpg" alt="E-commerce Website">
             <div class="layer">
-              <h5>Ecommerce Website</h5>
+              <h5>E-commerce Website</h5>
               <p>An online store for clothes, footwear, and accessories with smart filters and secure PayPal payments.</p>
-              <a href="https://look-good.vercel.app/" target="_blank"><i class='bx bx-link-external' style="color: black;"></i></a>
+              <a href="https://look-good.vercel.app/" target="_blank"><i class='bx bx-link-external'></i></a>
             </div>
           </div>
           <div class="row">
-            <img class="amazonclone" src="web.jpg" alt="Project Image 2">
+            <img class="amazonclone" src="web.jpg" alt="Web-scraping Project">
             <div class="layer">
               <h5>Web-scraping</h5>
               <p>Streamlined e-commerce product data retrieval and comparison for enhanced consumer decision-making and insights.</p>
-              <a href="https://ecommerce-scrape-nine.vercel.app/"><i class='bx bx-link-external' style="color: black;"></i></a>
+              <a href="https://ecommerce-scrape-nine.vercel.app/" target="_blank"><i class='bx bx-link-external'></i></a>
             </div>
           </div>
           <div class="row">
-            <img class="amazonclone" src="beauty.avif" alt="Project Image 3">
+            <img class="amazonclone" src="beauty.avif" alt="Amazon Clone Project">
             <div class="layer">
               <h5>Amazon Clone Project</h5>
               <p>This project is designed to provide a seamless online shopping experience, allowing users to browse, purchase, and track their orders efficiently.</p>
-              <a href="https://vandana-manojkumar.github.io/amazon-clone/"><i class='bx bx-link-external' style="color: black;"></i></a>
+              <a href="https://vandana-manojkumar.github.io/amazon-clone/" target="_blank"><i class='bx bx-link-external'></i></a>
             </div>
           </div>
         </div>
@@ -368,7 +575,54 @@
   
   <a href="#" class="top"><i class='bx bx-up-arrow-alt'></i></a>
 
+  <!-- Original script includes -->
   <script src="main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
+  <!-- Add this updated JavaScript for multiple modals -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all modal buttons
+      const modalBtns = document.querySelectorAll('.btn-modal');
+      
+      // Get all close buttons
+      const closeBtns = document.querySelectorAll('.close');
+      
+      // Add click event to all modal buttons
+      modalBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Get the target modal ID from data-modal attribute
+          const modalId = this.getAttribute('data-modal');
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.style.display = 'block';
+          }
+        });
+      });
+      
+      // Add click event to all close buttons
+      closeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Find the parent modal
+          const modal = this.closest('.modal');
+          if (modal) {
+            modal.style.display = 'none';
+          }
+        });
+      });
+      
+      // Close modal when clicking outside
+      window.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal')) {
+          e.target.style.display = 'none';
+        }
+      });
+      
+      // Add this to your existing main.js script or include here
+      // For the text animation on home page
+     
+    });
+  </script>
 </body>
 </html>
