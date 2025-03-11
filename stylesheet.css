@@ -1115,7 +1115,6 @@ section {
         margin: 0 1rem 3rem;
     }
 }
-
 @media (max-width: 480px) {
     .theme-toggle {
         margin-right: 40px;
@@ -1129,7 +1128,6 @@ section {
         transform: translateX(20px);
     }
 }
-
 @media (max-width: 400px) {
     .btn-box, .bresume {
         width: 12rem;
