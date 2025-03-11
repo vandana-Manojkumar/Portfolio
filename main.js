@@ -101,3 +101,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
+
+// Add this to your main.js file
+
+// Theme toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const themeSwitch = document.getElementById('theme-switch');
+  
+  // Check for saved theme preference or use device preference
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  // If a theme was previously saved, apply it
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+    themeSwitch.checked = true;
+  } else if (savedTheme === 'dark') {
+    document.body.classList.remove('light-theme');
+    themeSwitch.checked = false;
+  } else if (prefersDark) {
+    // If no saved preference but device prefers dark
+    document.body.classList.remove('light-theme');
+    themeSwitch.checked = false;
+  }
+  
+  // Toggle theme when switch is clicked
+  themeSwitch.addEventListener('change', function() {
+    if (this.checked) {
+      document.body.classList.add('light-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.body.classList.remove('light-theme');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+});
